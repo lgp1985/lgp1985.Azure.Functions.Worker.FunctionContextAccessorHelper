@@ -1,5 +1,7 @@
 ﻿
-namespace lgp1985.Azure.Functions.Worker.FunctionContextAccessorHelper;
+using lgp1985.Azure.Functions.Worker.FunctionContextAccessorHelper;
+
+namespace lgp1985.Azure.Functions.Extensions.DependencyInjection;
 
 /// <summary>
 /// Extension methods for configuring FunctionContext services.
