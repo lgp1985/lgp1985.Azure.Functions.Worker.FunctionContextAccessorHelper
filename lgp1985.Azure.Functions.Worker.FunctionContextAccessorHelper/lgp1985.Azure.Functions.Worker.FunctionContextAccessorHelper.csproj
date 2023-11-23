@@ -19,7 +19,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/lgp1985/lgp1985.Azure.Functions.Worker.FunctionContextAccessorHelper</RepositoryUrl>
 		<PackageTags>Azure.Functions.Worker;Dependency Injeciton;FunctionContext;HttpContextAccessor</PackageTags>
-		<Version>1.0.2</Version>
+		<Version>1.0.3</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

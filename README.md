@@ -8,17 +8,21 @@ On your `Program.cs` file, add the following code:
 using lgp1985.Azure.Functions.Extensions.DependencyInjection;
 
 var host = new HostBuilder()
-    .ConfigureFunctionsWorkerDefaults()
-    .ConfigureServices(services =>
+    .ConfigureFunctionsWorkerDefaults(
+        // ⬇️ Add this ⬇️
+        s => s.UseFunctionContextAccessor()
+        // ⬆️ Add this ⬆️
+    ).ConfigureServices(services =>
     {
         services.AddApplicationInsightsTelemetryWorkerService();
         services.ConfigureFunctionsApplicationInsights();
         services.AddHealthChecks();
         // ...
+
+        // ⬇️ Add this ⬇️
+        services.AddFunctionContextAccessor()
+        // ⬆️ Add this ⬆️
     })
-    // ⬇️ Add this ⬇️
-    .UseFunctionContextAccessor()
-    // ⬆️ Add this ⬆️
     .Build();
 
 host.Run();

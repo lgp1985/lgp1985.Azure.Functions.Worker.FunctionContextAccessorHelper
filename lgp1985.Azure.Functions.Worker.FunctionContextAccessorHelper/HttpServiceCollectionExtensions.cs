@@ -13,7 +13,7 @@ public static class HttpServiceCollectionExtensions
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/>.</param>
     /// <returns>The service collection.</returns>
-    public static IServiceCollection AddHttpContextAccessor(this IServiceCollection services)
+    public static IServiceCollection AddFunctionContextAccessor(this IServiceCollection services)
     {
 #if NET6_0 || NET7_0 || NETSTANDARD2_0_OR_GREATER
         if (services is null)
@@ -44,33 +44,13 @@ public static class HttpServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(workerApplication);
 #endif
 
-        return workerApplication.UseMiddleware<FunctionContextAccessorMiddleware>();
-    }
-
-    /// <summary>
-    /// Adds a default implementation for the <see cref="IFunctionContextAccessor"/> service and the <see cref="FunctionContextAccessorMiddleware"/> service.
-    /// </summary>
-    /// <param name="builder">The <see cref="IHostBuilder"/> instance this method extends.</param>
-    /// <returns>The <see cref="IHostBuilder"/> instance this method extends.</returns>
-    public static IHostBuilder UseFunctionContextAccessor(this IHostBuilder builder)
-    {
-#if NET6_0 || NET7_0 || NETSTANDARD2_0_OR_GREATER
-        if (builder is null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
-#elif NET8_0_OR_GREATER
-        ArgumentNullException.ThrowIfNull(builder);
-#endif
-
-        return builder
-            .ConfigureServices(services =>
-            {
-                services.AddHttpContextAccessor();
-            })
-            .ConfigureFunctionsWorkerDefaults(workerApplication =>
-            {
-                workerApplication.UseFunctionContextAccessor();
-            });
+        return workerApplication
+            //.UseMiddleware<FunctionContextAccessorMiddleware>();
+            .UseWhen<FunctionContextAccessorMiddleware>((context) =>
+             {
+                 // We want to use this middleware only for http trigger invocations.
+                 return context.FunctionDefinition.InputBindings.Values
+                               .First(a => a.Type.EndsWith("Trigger")).Type == "httpTrigger";
+             });
     }
 }
