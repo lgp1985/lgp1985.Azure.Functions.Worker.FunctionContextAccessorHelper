@@ -6,5 +6,5 @@
 using System.Diagnostics.CodeAnalysis;
 
 #if NET6_0 || NET7_0 || NETSTANDARD2_0_OR_GREATER
-[assembly: SuppressMessage("Maintainability", "CA1510:Use ArgumentNullException throw helper", Justification = "Not supported prior to .NET8", Scope = "member", Target = "~M:lgp1985.Azure.Functions.Worker.FunctionContextAccessorHelper.FunctionContextAccessorMiddleware.Invoke(Microsoft.Azure.Functions.Worker.FunctionContext,Microsoft.Azure.Functions.Worker.Middleware.FunctionExecutionDelegate)~System.Threading.Tasks.Task")]
+[assembly: SuppressMessage("Maintainability", "CA1510:Use ArgumentNullException throw helper", Justification = "Not supported prior to .NET8")]
 #endif
