@@ -15,7 +15,18 @@
 		<Description>This library enables you to access FunctionContext via a dependency injected accesson on Azure Functions .NET Worker, for the isolated, out-of-process execution model.</Description>
 		<RootNamespace>lgp1985.Azure.Functions.Worker.FunctionContextAccessorHelper</RootNamespace>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://www.nuget.org/packages/lgp1985.Azure.Functions.Worker.FunctionContextAccessorHelper/</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/lgp1985/lgp1985.Azure.Functions.Worker.FunctionContextAccessorHelper</RepositoryUrl>
+		<PackageTags>Azure.Functions.Worker;Dependency Injeciton;FunctionContext;HttpContextAccessor</PackageTags>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.*" />
